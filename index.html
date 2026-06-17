@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="page-header">
+    <h1>Image Gallery</h1>
+    <p>Click any image to open it in the lightbox.</p>
+  </header>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:20px;background:#f4f4f4}
+    h1{text-align:center}
+    .gallery{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .gallery img{width:200px;height:150px;object-fit:cover;cursor:pointer;border-radius:6px}
+    .popup{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.8)}
+    .popup span{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer}
+    .popup img{max-width:90%;max-height:90%;border-radius:6px}
+  </style>
+</head>
+<body>
+
+  <h1>My Image Gallery</h1>
+
+  <div class="gallery">
+    <img src="https://picsum.photos/id/1015/400/300" alt="">
+    <img src="https://picsum.photos/id/1016/400/300" alt="">
+    <img src="https://picsum.photos/id/1018/400/300" alt="">
+    <img src="https://picsum.photos/id/1020/400/300" alt="">
+    <img src="https://picsum.photos/id/1024/400/300" alt="">
+    <img src="https://picsum.photos/id/1035/400/300" alt="">
+  </div>
+
+  <div class="popup" id="popup">
+    <span id="close">&times;</span>
+    <img src="" id="popup-img">
+  </div>
+
+  <script>
+    const imgs = document.querySelectorAll('.gallery img');
+    const popup = document.getElementById('popup');
+    const popupImg = document.getElementById('popup-img');
+    const close = document.getElementById('close');
+    imgs.forEach(img=>img.addEventListener('click',()=>{popupImg.src=img.src.replace('/400/300','/800/600');popup.style.display='flex'}));
+    close.addEventListener('click',()=>popup.style.display='none');
+    popup.addEventListener('click',e=>{if(e.target===popup)popup.style.display='none'});
+  </script>
+
+</body>
+</html>
+  <main class="gallery-grid" id="gallery"></main>
+
+  <div class="lightbox hidden" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="closeBtn" aria-label="Close lightbox">�</button>
+    <button class="lightbox-nav prev" id="prevBtn" aria-label="Previous image">?</button>
+    <div class="lightbox-content">
+      <img class="lightbox-image" id="lightboxImg" alt="" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+    <button class="lightbox-nav next" id="nextBtn" aria-label="Next image">?</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
